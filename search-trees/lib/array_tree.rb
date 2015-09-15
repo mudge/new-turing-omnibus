@@ -28,6 +28,13 @@ class ArrayTree
     puts "No" unless found
   end
 
+  def depth(x = top)
+    puts items(x)
+
+    depth(left(x)) if left(x)
+    depth(right(x)) if right(x)
+  end
+
   private
 
   def items(node)
