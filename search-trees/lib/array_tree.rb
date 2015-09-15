@@ -35,6 +35,18 @@ class ArrayTree
     depth(right(x)) if right(x)
   end
 
+  def breadth
+    nodes = [top]
+
+    until nodes.empty?
+      node = nodes.shift
+      puts items(node)
+
+      nodes << left(node) if left(node)
+      nodes << right(node) if right(node)
+    end
+  end
+
   private
 
   def items(node)

@@ -37,4 +37,17 @@ RSpec.describe ArrayTree do
       expect { tree.depth }.to output("37\n29\n5\n17\n51\n49\n55\n53\n62\n").to_stdout
     end
   end
+
+  describe '#breadth' do
+    it 'prints the tree in breadth-first order' do
+      tree = described_class.new(
+        [nil, nil, 37, 29,  51, nil, 55, 53,  62,  49,  5,   nil, 17,  nil],
+        [nil, nil, 4,  11,  10, nil, 8,  nil, nil, nil, nil, nil, nil, nil],
+        [nil, nil, 5,  nil, 7,  nil, 9,  nil, nil, nil, 13,  nil, nil, nil],
+        3
+      )
+
+      expect { tree.breadth }.to output("37\n29\n51\n5\n49\n55\n17\n53\n62\n").to_stdout
+    end
+  end
 end
