@@ -2,16 +2,16 @@ require 'array_tree'
 
 RSpec.describe ArrayTree do
   describe '#search' do
-    it 'prints "Yes" if it finds the name' do
+    it 'returns the node if it finds the name' do
       tree = build_tree
 
-      expect { tree.search(17) }.to output("Yes\n").to_stdout
+      expect(tree.search(17)).to eq(12)
     end
 
-    it 'prints "No" if it does not find the name' do
+    it 'returns nil does not find the name' do
       tree = build_tree
 
-      expect { tree.search(999) }.to output("No\n").to_stdout
+      expect(tree.search(999)).to be_nil
     end
   end
 
@@ -36,14 +36,14 @@ RSpec.describe ArrayTree do
       tree = build_tree
       tree.insert(2)
 
-      expect { tree.search(2) }.to output("Yes\n").to_stdout
+      expect(tree.search(2)).to eq(14)
     end
 
     it 'gracefully ignores existing nodes' do
       tree = build_tree
       tree.insert(37)
 
-      expect { tree.search(37) }.to output("Yes\n").to_stdout
+      expect(tree.search(37)).to eq(2)
     end
   end
 

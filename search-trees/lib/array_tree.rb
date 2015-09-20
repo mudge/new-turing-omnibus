@@ -9,23 +9,16 @@ class ArrayTree
     @top = top
   end
 
-  def search(name)
-    found = false
-    node = top
-
-    while node
-      if items[node] == name
-        puts "Yes"
-        node = nil
-        found = true
-      elsif items[node] > name
-        node = left[node]
-      elsif items[node] < name
-        node = right[node]
+  def search(name, node = top)
+    while node && name != items[node]
+      node = if name < items[node]
+        left[node]
+      else
+        right[node]
       end
     end
 
-    puts "No" unless found
+    node
   end
 
   def depth(x = top)
