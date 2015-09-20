@@ -31,6 +31,22 @@ RSpec.describe ArrayTree do
     end
   end
 
+  describe '#insert' do
+    it 'adds a new node to the tree' do
+      tree = build_tree
+      tree.insert(2)
+
+      expect { tree.search(2) }.to output("Yes\n").to_stdout
+    end
+
+    it 'gracefully ignores existing nodes' do
+      tree = build_tree
+      tree.insert(37)
+
+      expect { tree.search(37) }.to output("Yes\n").to_stdout
+    end
+  end
+
   def build_tree
     described_class.new(
       [nil, nil, 37, 29,  51, nil, 55, 53,  62,  49,  5,   nil, 17,  nil],

@@ -47,7 +47,40 @@ class ArrayTree
     end
   end
 
+  def insert(name)
+    node = top
+    next_index = items.size
+
+    while node
+      node = if items[node] > name
+        unless left[node]
+          insert_at(name, next_index)
+
+          left[node] = next_index
+        end
+
+        left[node]
+      elsif items[node] < name
+        unless right[node]
+          insert_at(name, next_index)
+
+          right[node] = next_index
+        end
+
+        right[node]
+      end
+    end
+  end
+
   attr_reader :items, :left, :right, :top
   private :items, :left, :right, :top
+
+  private
+
+  def insert_at(name, index)
+    items[index] = name
+    left[index] = nil
+    right[index] = nil
+  end
 end
 
